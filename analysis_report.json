@@ -1,0 +1,737 @@
+{
+    "summary": {
+        "total_files": 10,
+        "total_functions": 24,
+        "total_issues": 104
+    },
+    "issues": [
+        {
+            "file": "Core\\Src\\command_handler.c",
+            "function": "CommandHandler_PollCommand",
+            "rule_id": "C002",
+            "description": "The function uses uint8_t as the return type and for variables, which is acceptable if stdint.h types are the project standard. However, if the project typedefs require uint32_t or int32_t as the default integer type, this may be a violation. Please confirm project typedef policy.",
+            "suggested_fix": "If project guidelines require, change uint8_t to uint32_t or int32_t as appropriate."
+        },
+        {
+            "file": "Core\\Src\\command_handler.c",
+            "function": "CommandHandler_PollCommand",
+            "rule_id": "C006",
+            "description": "The variable 'rx' is declared but not explicitly initialized before use. Although HAL_UART_Receive will write to it on success, if HAL_UART_Receive fails, 'rx' remains uninitialized, which could be misleading.",
+            "suggested_fix": "Initialize 'rx' to 0 at declaration: uint8_t rx = 0U;"
+        },
+        {
+            "file": "Core\\Src\\command_handler.c",
+            "function": "CommandHandler_PollCommand",
+            "rule_id": "C009",
+            "description": "The pointer parameter 'cmd_out' is used for output only. If it is not intended to be modified outside, consider using the const qualifier for read-only data. However, in this case, it is being written to, so this may not apply. If any input pointers are read-only, mark them as const.",
+            "suggested_fix": "No change needed for 'cmd_out', but review all pointer parameters for const correctness."
+        },
+        {
+            "file": "Core\\Src\\command_handler.c",
+            "function": "CommandHandler_PollCommand",
+            "rule_id": "C010",
+            "description": "The function uses hard-coded numeric constants such as '1', '10', '0', and '5'. These are magic numbers and should be replaced with named constants or macros for clarity and maintainability.",
+            "suggested_fix": "Define macros such as #define UART_RX_TIMEOUT_MS 10U and #define CMD_MIN '0', #define CMD_MAX '5', and use them in the function."
+        },
+        {
+            "file": "Core\\Src\\command_handler.c",
+            "function": "CommandHandler_PollCommand",
+            "rule_id": "C011",
+            "description": "The function lacks a descriptive header comment explaining its purpose, parameters, and return value.",
+            "suggested_fix": "Add a header comment describing what the function does, its parameters, and its return value."
+        },
+        {
+            "file": "Core\\Src\\command_handler.c",
+            "function": "CommandHandler_PollCommand",
+            "rule_id": "C016",
+            "description": "The function has multiple return statements, which can reduce maintainability and make debugging harder.",
+            "suggested_fix": "Refactor the function to use a single return statement at the end."
+        },
+        {
+            "file": "Core\\Src\\command_handler.c",
+            "function": "CommandHandler_PollCommand",
+            "rule_id": "C017",
+            "description": "The function uses if statements without braces, which can lead to errors if the code is modified in the future.",
+            "suggested_fix": "Add braces around all if statement bodies."
+        },
+        {
+            "file": "Core\\Src\\command_handler.c",
+            "function": "CommandHandler_PollCommand",
+            "rule_id": "C044",
+            "description": "The function does not check if the pointer 'cmd_out' is NULL before dereferencing it, which could lead to undefined behavior if a NULL pointer is passed.",
+            "suggested_fix": "Add a check to ensure 'cmd_out' is not NULL before dereferencing."
+        },
+        {
+            "file": "Core\\Src\\main.c",
+            "function": "SystemClock_Config",
+            "rule_id": "C011",
+            "description": "The function does not include a descriptive header comment explaining its purpose, parameters, and return values.",
+            "suggested_fix": "Add a header comment at the beginning of the function describing its purpose, parameters, and return values."
+        },
+        {
+            "file": "Core\\Src\\main.c",
+            "function": "SystemClock_Config",
+            "rule_id": "C010",
+            "description": "Hard coded numeric constants (such as 8, 336, 2, 7, 5, 4) are used directly in the function.",
+            "suggested_fix": "Replace magic numbers with named constants or macros to improve readability and maintainability."
+        },
+        {
+            "file": "Core\\Src\\main.c",
+            "function": "SystemClock_Config",
+            "rule_id": "C037",
+            "description": "Configuration values for the PLL and clock dividers are not centralized; they are hardcoded in the function.",
+            "suggested_fix": "Move configuration values to a dedicated configuration header file and reference them using macros or constants."
+        },
+        {
+            "file": "Core\\Src\\main.c",
+            "function": "MX_GPIO_Init",
+            "rule_id": "C005",
+            "description": "The function exceeds fifty executable lines, making it lengthy and harder to maintain or test.",
+            "suggested_fix": "Split the function into smaller, reusable functions such as separate functions for enabling clocks, configuring output pins, configuring input pins, and configuring alternate function pins."
+        },
+        {
+            "file": "Core\\Src\\main.c",
+            "function": "MX_GPIO_Init",
+            "rule_id": "C011",
+            "description": "The function does not include a descriptive header comment explaining its purpose, parameters, and return values.",
+            "suggested_fix": "Add a header comment at the beginning of the function describing its purpose (GPIO initialization), parameters (none), and return value (none)."
+        },
+        {
+            "file": "Core\\Src\\main.c",
+            "function": "MX_GPIO_Init",
+            "rule_id": "C010",
+            "description": "Hard coded numeric constants such as GPIO_PIN_13, GPIO_PIN_RESET, GPIO_PIN_SET, GPIO_SPEED_FREQ_LOW, and alternate function values are used directly in the code.",
+            "suggested_fix": "Replace magic numbers with named constants or macros defined in a centralized configuration header if not already defined by the HAL library."
+        },
+        {
+            "file": "Core\\Src\\main.c",
+            "function": "MX_GPIO_Init",
+            "rule_id": "C037",
+            "description": "Configuration values for GPIO initialization (such as pin numbers, modes, speeds, and alternate functions) are scattered throughout the function.",
+            "suggested_fix": "Centralize configuration values in a dedicated configuration header or structure to improve maintainability and consistency."
+        },
+        {
+            "file": "Core\\Src\\main.c",
+            "function": "MX_ADC1_Init",
+            "rule_id": "C011",
+            "description": "The function lacks a descriptive header comment explaining its purpose, parameters, and return values.",
+            "suggested_fix": "Add a header comment above the function describing its purpose, parameters, and return values."
+        },
+        {
+            "file": "Core\\Src\\main.c",
+            "function": "MX_ADC1_Init",
+            "rule_id": "C010",
+            "description": "Hard coded numeric constants are used for configuration values, such as '1' for NbrOfConversion, '1' for Rank, and '3' for ADC_SAMPLETIME_3CYCLES.",
+            "suggested_fix": "Replace magic numbers with named constants or macros to improve code readability and maintainability."
+        },
+        {
+            "file": "Core\\Src\\main.c",
+            "function": "MX_ADC1_Init",
+            "rule_id": "C037",
+            "description": "Configuration values (such as ADC prescaler, resolution, channel, and sample time) are hardcoded in the function body.",
+            "suggested_fix": "Centralize configuration values in a dedicated header file or configuration module."
+        },
+        {
+            "file": "Core\\Src\\main.c",
+            "function": "MX_ADC1_Init",
+            "rule_id": "C040",
+            "description": "Error conditions are handled by calling Error_Handler(), but no error logging or diagnostic information is provided.",
+            "suggested_fix": "Add error logging or diagnostic output in the error handling path to aid debugging."
+        },
+        {
+            "file": "Core\\Src\\main.c",
+            "function": "MX_USART2_UART_Init",
+            "rule_id": "C010",
+            "description": "Hard coded numeric constants are used for BaudRate (115200).",
+            "suggested_fix": "Replace the magic number 115200 with a named constant or macro, such as #define USART2_BAUDRATE 115200, and use USART2_BAUDRATE in the assignment."
+        },
+        {
+            "file": "Core\\Src\\main.c",
+            "function": "MX_USART2_UART_Init",
+            "rule_id": "C011",
+            "description": "The function does not include a descriptive header comment explaining its purpose, parameters, and return values.",
+            "suggested_fix": "Add a header comment above the function describing what the function does, its parameters (if any), and its return value (if any)."
+        },
+        {
+            "file": "Core\\Src\\main.c",
+            "function": "MX_USART2_UART_Init",
+            "rule_id": "C037",
+            "description": "Configuration values such as baud rate, word length, stop bits, parity, mode, hardware flow control, and oversampling are set directly in the function instead of being centralized.",
+            "suggested_fix": "Move configuration values to a dedicated header file or configuration module and reference them via named constants or macros."
+        },
+        {
+            "file": "Core\\Src\\main.c",
+            "function": "MX_TIM3_Init",
+            "rule_id": "C010",
+            "description": "Hard coded numeric constants (e.g., 83, 999, 800) are used directly in the function. This reduces code readability and maintainability.",
+            "suggested_fix": "Replace magic numbers with named constants or macros, preferably defined in a dedicated configuration header."
+        },
+        {
+            "file": "Core\\Src\\main.c",
+            "function": "MX_TIM3_Init",
+            "rule_id": "C011",
+            "description": "The function does not include a descriptive header comment explaining its purpose, parameters, and return values.",
+            "suggested_fix": "Add a function header comment describing what the function does, its parameters, and any return value or side effects."
+        },
+        {
+            "file": "Core\\Src\\main.c",
+            "function": "MX_TIM3_Init",
+            "rule_id": "C037",
+            "description": "Configuration values for the timer (such as prescaler, period, and pulse) are not centralized. They are hard coded within the function.",
+            "suggested_fix": "Move configuration values to a dedicated header or configuration file and reference them via named macros or constants."
+        },
+        {
+            "file": "Core\\Src\\main.c",
+            "function": "Error_Handler",
+            "rule_id": "C011",
+            "description": "The function does not include a descriptive header comment explaining its purpose, parameters, and return values.",
+            "suggested_fix": "Add a header comment above the function describing its purpose, parameters, and return values."
+        },
+        {
+            "file": "Core\\Src\\main.c",
+            "function": "Error_Handler",
+            "rule_id": "C040",
+            "description": "The function does not log error conditions or provide diagnostic information when an error occurs.",
+            "suggested_fix": "Add error logging or diagnostic output (e.g., via UART, LED indication, or debug print) to help identify the cause of the error."
+        },
+        {
+            "file": "Core\\Src\\motor_controller.c",
+            "function": "MotorController_Init",
+            "rule_id": "C011",
+            "description": "The function does not include a descriptive header comment explaining its purpose, parameters, and return values.",
+            "suggested_fix": "Add a header comment above the function describing its purpose, parameters, and return values."
+        },
+        {
+            "file": "Core\\Src\\motor_controller.c",
+            "function": "MotorController_Init",
+            "rule_id": "C046",
+            "description": "The function calls HAL_GPIO_Init and HAL_TIM_PWM_Start but does not check their return values to validate successful hardware initialization.",
+            "suggested_fix": "Check the return values of HAL_GPIO_Init and HAL_TIM_PWM_Start, and handle initialization failures appropriately (e.g., return an error code or log the error)."
+        },
+        {
+            "file": "Core\\Src\\motor_controller.c",
+            "function": "MotorController_MoveTo",
+            "rule_id": "C002",
+            "description": "The function uses uint8_t for the parameter and local variable, but if the project standardizes on uint32_t or int32_t as fixed-width integer types, this may be a violation unless uint8_t is explicitly allowed by project typedefs.",
+            "suggested_fix": "Replace uint8_t with uint32_t or a project-specific typedef if required by project standards."
+        },
+        {
+            "file": "Core\\Src\\motor_controller.c",
+            "function": "MotorController_MoveTo",
+            "rule_id": "C003",
+            "description": "The function assigns to global variables (e.g., s_target_position, s_motor_state, s_movement_active), which should be avoided unless absolutely necessary.",
+            "suggested_fix": "Encapsulate these variables within the module or pass them as parameters if possible."
+        },
+        {
+            "file": "Core\\Src\\motor_controller.c",
+            "function": "MotorController_MoveTo",
+            "rule_id": "C010",
+            "description": "The function uses hard-coded numeric constants such as 1U and 0, which are magic numbers.",
+            "suggested_fix": "Replace magic numbers with named constants or macros (e.g., #define MOVEMENT_ACTIVE 1U)."
+        },
+        {
+            "file": "Core\\Src\\motor_controller.c",
+            "function": "MotorController_MoveTo",
+            "rule_id": "C011",
+            "description": "The function does not include a descriptive header comment explaining its purpose, parameters, and return values.",
+            "suggested_fix": "Add a header comment describing the function, its parameters, and its behavior."
+        },
+        {
+            "file": "Core\\Src\\motor_controller.c",
+            "function": "MotorController_MoveTo",
+            "rule_id": "C016",
+            "description": "The function contains multiple return statements, which violates the single point of exit guideline.",
+            "suggested_fix": "Refactor the function to use a single return statement at the end."
+        },
+        {
+            "file": "Core\\Src\\motor_controller.c",
+            "function": "MotorController_MoveTo",
+            "rule_id": "C017",
+            "description": "Some conditional statements do not use braces (e.g., the else branch before MotorController_Abort()).",
+            "suggested_fix": "Add braces around all if, else, and other control structures."
+        },
+        {
+            "file": "Core\\Src\\motor_controller.c",
+            "function": "MotorController_MoveTo",
+            "rule_id": "C043",
+            "description": "The local variable declaration 'uint8_t current_position = 0;' is fine, but if there are multiple variables declared in a single statement elsewhere, it would violate this rule. Here, only one variable per statement is used, so this is not a violation in this function.",
+            "suggested_fix": "No fix needed for this function, but ensure future declarations are one per statement."
+        },
+        {
+            "file": "Core\\Src\\motor_controller.c",
+            "function": "MotorController_Update",
+            "rule_id": "C011",
+            "description": "The function does not include a descriptive header comment explaining its purpose, parameters, and return values.",
+            "suggested_fix": "Add a header comment above the function describing its purpose, parameters, and return values."
+        },
+        {
+            "file": "Core\\Src\\motor_controller.c",
+            "function": "MotorController_Update",
+            "rule_id": "C017",
+            "description": "Not all conditional statements use braces. For example, the 'if(PositionSensing_GetPosition(&current_position))' and 'if (PositionSensing_IsAtTarget(s_target_position))' statements lack braces.",
+            "suggested_fix": "Add braces around all control structures, even for single statements."
+        },
+        {
+            "file": "Core\\Src\\motor_controller.c",
+            "function": "MotorController_Update",
+            "rule_id": "C010",
+            "description": "The numeric constant '0U' is used directly in the code, which is considered a magic number.",
+            "suggested_fix": "Replace '0U' with a named constant or macro, such as 'POSITION_INIT_VALUE'."
+        },
+        {
+            "file": "Core\\Src\\motor_controller.c",
+            "function": "MotorController_Abort",
+            "rule_id": "C011",
+            "description": "The function does not include a descriptive header comment explaining its purpose, parameters, and return values.",
+            "suggested_fix": "Add a header comment above the function describing its purpose, parameters, and return values."
+        },
+        {
+            "file": "Core\\Src\\motor_controller.c",
+            "function": "MotorController_Abort",
+            "rule_id": "C002",
+            "description": "The variable 's_movement_active' is assigned a value of 0U, which is an unsigned int literal. The type of 's_movement_active' is not shown, but if it is a primitive int type, it should use a fixed width integer type such as uint32_t.",
+            "suggested_fix": "Ensure 's_movement_active' is declared as a fixed width integer type (e.g., uint32_t) instead of a primitive int type."
+        },
+        {
+            "file": "Core\\Src\\motor_controller.c",
+            "function": "MotorController_Abort",
+            "rule_id": "C003",
+            "description": "The function uses global variables 's_motor_state' and 's_movement_active'. Global variables should be avoided unless absolutely necessary.",
+            "suggested_fix": "Encapsulate 's_motor_state' and 's_movement_active' within a module or pass them as parameters if possible."
+        },
+        {
+            "file": "Core\\Src\\motor_controller.c",
+            "function": "MotorController_Abort",
+            "rule_id": "C011",
+            "description": "The function does not include a descriptive header comment explaining its purpose, parameters, and return values.",
+            "suggested_fix": "Add a header comment above the function describing its purpose, parameters, and return values."
+        },
+        {
+            "file": "Core\\Src\\motor_controller.c",
+            "function": "MotorController_Abort",
+            "rule_id": "C023",
+            "description": "The function assigns 'MOTOR_STATE_STOPPED' to 's_motor_state'. Ensure that 'MOTOR_STATE_STOPPED' is defined as an enum value, not a numeric constant.",
+            "suggested_fix": "Define motor states using an enum type and use the enum values for state assignments."
+        },
+        {
+            "file": "Core\\Src\\motor_controller.c",
+            "function": "MotorController_Abort",
+            "rule_id": "C010",
+            "description": "The value '0U' is a hard-coded numeric constant. Magic numbers should be replaced with named constants or macros.",
+            "suggested_fix": "Define a named constant or macro for the value assigned to 's_movement_active', such as 'MOVEMENT_INACTIVE'."
+        },
+        {
+            "file": "Core\\Src\\motor_controller.c",
+            "function": "MotorController_Abort",
+            "rule_id": "C009",
+            "description": "If any of the GPIO port or pin identifiers (e.g., MOTOR_GPIO_PORT_DIR, MOTOR_PIN_DIR_FWD, etc.) are read-only, they should be declared as const.",
+            "suggested_fix": "Add the const qualifier to any immutable data used in the function."
+        },
+        {
+            "file": "Core\\Src\\motor_controller.c",
+            "function": "MotorController_GetState",
+            "rule_id": "C011",
+            "description": "The function does not include a descriptive header comment explaining its purpose, parameters, and return value.",
+            "suggested_fix": "Add a header comment above the function describing its purpose, parameters, and return value."
+        },
+        {
+            "file": "Core\\Src\\motor_controller.c",
+            "function": "MotorController_GetState",
+            "rule_id": "C039",
+            "description": "The function is a public API but lacks API documentation.",
+            "suggested_fix": "Provide API documentation for the function, including usage, parameters, and return value."
+        },
+        {
+            "file": "Core\\Src\\motor_controller.c",
+            "function": "MotorController_IsMoving",
+            "rule_id": "C002",
+            "description": "The function uses uint8_t, which is a fixed-width integer type, but it is unclear if s_movement_active is also of a fixed-width integer type. If s_movement_active is not a fixed-width type, this could be a violation. Please ensure s_movement_active is declared as a fixed-width integer type (e.g., uint8_t, uint32_t).",
+            "suggested_fix": "Declare s_movement_active as a fixed-width integer type such as uint8_t."
+        },
+        {
+            "file": "Core\\Src\\motor_controller.c",
+            "function": "MotorController_IsMoving",
+            "rule_id": "C003",
+            "description": "The function returns the value of s_movement_active, which appears to be a global variable. Use of global variables is discouraged unless absolutely necessary.",
+            "suggested_fix": "Encapsulate s_movement_active within the module or provide controlled access through getter/setter functions."
+        },
+        {
+            "file": "Core\\Src\\motor_controller.c",
+            "function": "MotorController_IsMoving",
+            "rule_id": "C011",
+            "description": "The function does not include a descriptive header comment explaining its purpose, parameters, and return value.",
+            "suggested_fix": "Add a header comment describing the function's purpose, parameters, and return value."
+        },
+        {
+            "file": "Core\\Src\\motor_controller.c",
+            "function": "MotorController_IsMoving",
+            "rule_id": "C039",
+            "description": "The function is likely a public API but lacks documentation.",
+            "suggested_fix": "Provide API documentation for the function, including its purpose, parameters, and return value."
+        },
+        {
+            "file": "Core\\Src\\motor_controller.c",
+            "function": "MotorController_GetTarget",
+            "rule_id": "C002",
+            "description": "The function uses uint8_t as the return type and parameter type. While uint8_t is a fixed-width integer type from stdint.h, the guideline may require using project-specific typedefs (e.g., uint32_t) for consistency, or at least to use uint32_t for return values and parameters unless memory constraints dictate otherwise.",
+            "suggested_fix": "Consider using uint32_t for return type and parameters, or ensure that project typedefs are used consistently as per project standards."
+        },
+        {
+            "file": "Core\\Src\\motor_controller.c",
+            "function": "MotorController_GetTarget",
+            "rule_id": "C003",
+            "description": "The function accesses global variables (s_movement_active and s_target_position), which is discouraged unless absolutely necessary.",
+            "suggested_fix": "Encapsulate s_movement_active and s_target_position within a module or pass them as parameters if possible."
+        },
+        {
+            "file": "Core\\Src\\motor_controller.c",
+            "function": "MotorController_GetTarget",
+            "rule_id": "C010",
+            "description": "The function uses hard-coded numeric constants (6U, 0U, 1U) directly in the code.",
+            "suggested_fix": "Replace magic numbers with named constants or macros, e.g., #define MOTOR_POSITION_MAX 6U."
+        },
+        {
+            "file": "Core\\Src\\motor_controller.c",
+            "function": "MotorController_GetTarget",
+            "rule_id": "C011",
+            "description": "The function lacks a descriptive header comment explaining its purpose, parameters, and return value.",
+            "suggested_fix": "Add a header comment describing the function's purpose, parameters, and return value."
+        },
+        {
+            "file": "Core\\Src\\motor_controller.c",
+            "function": "MotorController_GetTarget",
+            "rule_id": "C016",
+            "description": "The function has multiple return statements, which may reduce clarity and maintainability.",
+            "suggested_fix": "Refactor the function to use a single return statement at the end."
+        },
+        {
+            "file": "Core\\Src\\motor_controller.c",
+            "function": "MotorController_GetTarget",
+            "rule_id": "C017",
+            "description": "The conditional statements do not use braces, which can lead to errors and reduce readability.",
+            "suggested_fix": "Add braces around all control structures, even for single statements."
+        },
+        {
+            "file": "Core\\Src\\motor_controller.c",
+            "function": "MotorController_GetTarget",
+            "rule_id": "C039",
+            "description": "The function is a public API but lacks documentation.",
+            "suggested_fix": "Provide API documentation for the function."
+        },
+        {
+            "file": "Core\\Src\\position_sensing.c",
+            "function": "PositionSensing_Init",
+            "rule_id": "C002",
+            "description": "The function uses primitive integer types (e.g., 0U) for initialization. The types of s_adc_value and s_position_valid are not shown, but if they are not fixed-width integer types (e.g., uint32_t), this violates the guideline.",
+            "suggested_fix": "Ensure that all integer variables use fixed-width types from stdint.h, such as uint32_t or int32_t."
+        },
+        {
+            "file": "Core\\Src\\position_sensing.c",
+            "function": "PositionSensing_Init",
+            "rule_id": "C011",
+            "description": "The function does not include a descriptive header comment explaining its purpose, parameters, and return values.",
+            "suggested_fix": "Add a header comment above the function describing its purpose, parameters, and return values."
+        },
+        {
+            "file": "Core\\Src\\position_sensing.c",
+            "function": "PositionSensing_Init",
+            "rule_id": "C039",
+            "description": "The function is a public API but lacks documentation.",
+            "suggested_fix": "Provide API documentation for the function, describing its usage and behavior."
+        },
+        {
+            "file": "Core\\Src\\position_sensing.c",
+            "function": "Position_GetFromADC",
+            "rule_id": "C002",
+            "description": "The function uses uint8_t and uint16_t, which are fixed-width integer types, but the guideline also requires consistent use of project typedefs or stdint.h types across the project. If project-specific typedefs exist, they should be used. If not, this is acceptable.",
+            "suggested_fix": "Ensure that uint8_t and uint16_t are the standard types used throughout the project, or replace them with project-specific typedefs if required."
+        },
+        {
+            "file": "Core\\Src\\position_sensing.c",
+            "function": "Position_GetFromADC",
+            "rule_id": "C010",
+            "description": "The function uses hard-coded numeric constants (4000, 3750, 3480, 2500, 1000, 5) directly in the code, which are considered magic numbers.",
+            "suggested_fix": "Replace magic numbers with named constants or macros, e.g., #define ADC_THRESHOLD_1 4000."
+        },
+        {
+            "file": "Core\\Src\\position_sensing.c",
+            "function": "Position_GetFromADC",
+            "rule_id": "C011",
+            "description": "The function does not include a descriptive header comment explaining its purpose, parameters, and return value.",
+            "suggested_fix": "Add a header comment describing the function's purpose, parameters, and return value."
+        },
+        {
+            "file": "Core\\Src\\position_sensing.c",
+            "function": "Position_GetFromADC",
+            "rule_id": "C016",
+            "description": "The function contains multiple return statements, violating the guideline that recommends a single point of exit.",
+            "suggested_fix": "Refactor the function to use a single return statement at the end by assigning the result to a variable and returning it once."
+        },
+        {
+            "file": "Core\\Src\\position_sensing.c",
+            "function": "Position_GetFromADC",
+            "rule_id": "C017",
+            "description": "The conditional statements do not use braces, which is required for all control structures.",
+            "suggested_fix": "Add braces around the bodies of all if statements."
+        },
+        {
+            "file": "Core\\Src\\position_sensing.c",
+            "function": "Position_GetFromADC",
+            "rule_id": "C023",
+            "description": "The function returns numeric state values (0-5) instead of using an enumeration for position states.",
+            "suggested_fix": "Define an enum for position states and return the appropriate enum value instead of raw numbers."
+        },
+        {
+            "file": "Core\\Src\\position_sensing.c",
+            "function": "Position_GetFromADC",
+            "rule_id": "C037",
+            "description": "Configuration values (ADC thresholds) are hard-coded in the function instead of being centralized.",
+            "suggested_fix": "Move ADC threshold values to a dedicated configuration header file."
+        },
+        {
+            "file": "Core\\Src\\position_sensing.c",
+            "function": "PositionSensing_IsAtTarget",
+            "rule_id": "C002",
+            "description": "The function uses uint8_t as the return type and parameter type. While uint8_t is a fixed-width integer type from stdint.h, the guideline may require using uint32_t or int32_t for consistency and to avoid potential issues with integer promotion and portability.",
+            "suggested_fix": "Change the function return type and parameter type to uint32_t or int32_t if project standards require these as the default integer types."
+        },
+        {
+            "file": "Core\\Src\\position_sensing.c",
+            "function": "PositionSensing_IsAtTarget",
+            "rule_id": "C003",
+            "description": "The function uses global variables s_adc_value and s_stop_ranges. Use of global variables should be avoided unless absolutely necessary.",
+            "suggested_fix": "Pass s_adc_value and s_stop_ranges as parameters to the function, or encapsulate them within a module or structure."
+        },
+        {
+            "file": "Core\\Src\\position_sensing.c",
+            "function": "PositionSensing_IsAtTarget",
+            "rule_id": "C010",
+            "description": "The numeric constant 6 is used directly in the comparison (target >= 6U), which is a magic number.",
+            "suggested_fix": "Replace the magic number 6 with a named constant or macro, such as #define POSITION_TARGET_COUNT 6, and use POSITION_TARGET_COUNT in the comparison."
+        },
+        {
+            "file": "Core\\Src\\position_sensing.c",
+            "function": "PositionSensing_IsAtTarget",
+            "rule_id": "C011",
+            "description": "The function does not include a descriptive header comment explaining its purpose, parameters, and return value.",
+            "suggested_fix": "Add a header comment above the function describing its purpose, parameters, and return value."
+        },
+        {
+            "file": "Core\\Src\\position_sensing.c",
+            "function": "PositionSensing_IsAtTarget",
+            "rule_id": "C016",
+            "description": "The function has multiple return statements, which violates the single point of exit guideline.",
+            "suggested_fix": "Refactor the function to use a single return statement at the end, using a local variable to store the result."
+        },
+        {
+            "file": "Core\\Src\\position_sensing.c",
+            "function": "PositionSensing_IsAtTarget",
+            "rule_id": "C017",
+            "description": "The conditional statements do not use braces, which can lead to maintenance errors.",
+            "suggested_fix": "Add braces around all if statement bodies."
+        },
+        {
+            "file": "Core\\Src\\position_sensing.c",
+            "function": "PositionSensing_Update",
+            "rule_id": "C011",
+            "description": "The function does not include a descriptive header comment explaining its purpose, parameters, and return values.",
+            "suggested_fix": "Add a header comment above the function describing what the function does, its parameters (if any), and what it returns or modifies."
+        },
+        {
+            "file": "Core\\Src\\position_sensing.c",
+            "function": "PositionSensing_Update",
+            "rule_id": "C010",
+            "description": "The numeric constant '2' is used directly in the call to HAL_ADC_PollForConversion, which is a magic number.",
+            "suggested_fix": "Replace the hard-coded value '2' with a named constant or macro (e.g., #define ADC_POLL_TIMEOUT_MS 2)."
+        },
+        {
+            "file": "Core\\Src\\position_sensing.c",
+            "function": "PositionSensing_Update",
+            "rule_id": "C017",
+            "description": "The if and else statements do not use braces, which can lead to errors and reduces code readability.",
+            "suggested_fix": "Add braces around the bodies of the if and else statements."
+        },
+        {
+            "file": "Core\\Src\\position_sensing.c",
+            "function": "PositionSensing_Update",
+            "rule_id": "C003",
+            "description": "The function appears to use global variables (e.g., s_adc_value, s_logical_position, s_position_valid), which should be avoided unless absolutely necessary.",
+            "suggested_fix": "Encapsulate these variables within the function or module, or pass them as parameters if possible."
+        },
+        {
+            "file": "Core\\Src\\position_sensing.c",
+            "function": "PositionSensing_Update",
+            "rule_id": "C009",
+            "description": "The function does not use the const qualifier for read-only data where applicable (e.g., if FLAP_POSITION_INVALID is a constant, it should be declared as const or a macro).",
+            "suggested_fix": "Ensure all immutable data, such as FLAP_POSITION_INVALID, is declared with the const qualifier or as a macro."
+        },
+        {
+            "file": "Core\\Src\\position_sensing.c",
+            "function": "PositionSensing_GetPosition",
+            "rule_id": "C002",
+            "description": "The function uses uint8_t as the return type and parameter type. While uint8_t is a fixed-width integer type from stdint.h, the guideline may require the use of uint32_t or int32_t for consistency and to avoid ambiguity, unless there is a specific reason to use 8-bit types.",
+            "suggested_fix": "Consider using uint32_t as the return type and for the pos_out parameter, unless memory constraints or protocol requirements dictate the use of uint8_t."
+        },
+        {
+            "file": "Core\\Src\\position_sensing.c",
+            "function": "PositionSensing_GetPosition",
+            "rule_id": "C011",
+            "description": "The function lacks a descriptive header comment explaining its purpose, parameters, and return values.",
+            "suggested_fix": "Add a header comment describing what the function does, its parameters, and what the return value indicates."
+        },
+        {
+            "file": "Core\\Src\\position_sensing.c",
+            "function": "PositionSensing_GetPosition",
+            "rule_id": "C016",
+            "description": "The function has multiple return statements, which is discouraged. Functions should have a single point of exit whenever practical.",
+            "suggested_fix": "Refactor the function to use a single return statement at the end."
+        },
+        {
+            "file": "Core\\Src\\position_sensing.c",
+            "function": "PositionSensing_GetPosition",
+            "rule_id": "C017",
+            "description": "The conditional statement does not use braces, which is required for all conditional and loop statements.",
+            "suggested_fix": "Add braces around the if and else blocks."
+        },
+        {
+            "file": "Core\\Src\\position_sensing.c",
+            "function": "PositionSensing_GetPosition",
+            "rule_id": "C039",
+            "description": "The function is a public API but lacks documentation.",
+            "suggested_fix": "Provide API documentation for the function, including details about its usage and expected behavior."
+        },
+        {
+            "file": "Core\\Src\\position_sensing.c",
+            "function": "PositionSensing_IsValid",
+            "rule_id": "C011",
+            "description": "The function does not include a descriptive header comment explaining its purpose, parameters, and return value.",
+            "suggested_fix": "Add a header comment above the function describing what the function does, its parameters (if any), and its return value."
+        },
+        {
+            "file": "Core\\Src\\position_sensing.c",
+            "function": "PositionSensing_IsValid",
+            "rule_id": "C003",
+            "description": "The function appears to return the value of a global variable 's_position_valid', which violates the guideline to avoid global variables unless absolutely necessary.",
+            "suggested_fix": "Encapsulate 's_position_valid' within a module or provide controlled access through getter/setter functions, or document its necessity as a global variable if unavoidable."
+        },
+        {
+            "file": "Core\\Src\\position_sensing.c",
+            "function": "PositionSensing_IsValid",
+            "rule_id": "C039",
+            "description": "The function is a public API but lacks documentation describing its usage.",
+            "suggested_fix": "Provide API documentation for the function, including its purpose, parameters, and return value."
+        },
+        {
+            "file": "Core\\Src\\status_indicator.c",
+            "function": "StatusIndicator_Init",
+            "rule_id": "C011",
+            "description": "The function does not include a descriptive header comment explaining its purpose, parameters, and return values.",
+            "suggested_fix": "Add a header comment above the function describing its purpose, parameters, and return values."
+        },
+        {
+            "file": "Core\\Src\\status_indicator.c",
+            "function": "StatusIndicator_Init",
+            "rule_id": "C010",
+            "description": "Hard coded numeric constants (e.g., GPIO_PIN_1, GPIO_PIN_2, etc.) are used directly in the code.",
+            "suggested_fix": "Replace hard coded numeric constants with named macros or constants defined in a centralized configuration header."
+        },
+        {
+            "file": "Core\\Src\\status_indicator.c",
+            "function": "StatusIndicator_Init",
+            "rule_id": "C009",
+            "description": "The loop variable 'i' is not declared as const, even though it is not modified within the loop body.",
+            "suggested_fix": "Declare the loop variable as const if it is not intended to be modified, or ensure other read-only data is marked as const where applicable."
+        },
+        {
+            "file": "Core\\Src\\status_indicator.c",
+            "function": "StatusIndicator_Init",
+            "rule_id": "C035",
+            "description": "Array bounds are not checked before accessing 's_led_pos_pins[i]' in the for loop.",
+            "suggested_fix": "Validate that 'i' is within the bounds of the 's_led_pos_pins' array before accessing its elements."
+        },
+        {
+            "file": "Core\\Src\\status_indicator.c",
+            "function": "StatusIndicator_Init",
+            "rule_id": "C037",
+            "description": "Configuration values such as pin numbers and port names are not centralized.",
+            "suggested_fix": "Move configuration values (e.g., pin numbers, port names) to a dedicated configuration header file."
+        },
+        {
+            "file": "Core\\Src\\status_indicator.c",
+            "function": "StatusIndicator_Init",
+            "rule_id": "C039",
+            "description": "The function is a public API but lacks documentation.",
+            "suggested_fix": "Provide API documentation for the function, describing its usage and behavior."
+        },
+        {
+            "file": "Core\\Src\\status_indicator.c",
+            "function": "StatusIndicator_Init",
+            "rule_id": "C046",
+            "description": "The return value of 'HAL_GPIO_Init' is not checked to validate successful hardware initialization.",
+            "suggested_fix": "Check the return value of 'HAL_GPIO_Init' and handle initialization failures appropriately."
+        },
+        {
+            "file": "Core\\Src\\status_indicator.c",
+            "function": "StatusIndicator_Update",
+            "rule_id": "C011",
+            "description": "The function does not include a descriptive header comment explaining its purpose, parameters, and return values.",
+            "suggested_fix": "Add a header comment above the function describing what it does, its parameters, and any return value or side effects."
+        },
+        {
+            "file": "Core\\Src\\status_indicator.c",
+            "function": "StatusIndicator_Update",
+            "rule_id": "C009",
+            "description": "The array s_led_pos_pins is used as read-only data but is not declared as const. If it is not modified elsewhere, it should be declared as const.",
+            "suggested_fix": "Declare s_led_pos_pins as const if it is not modified after initialization."
+        },
+        {
+            "file": "Core\\Src\\status_indicator.c",
+            "function": "StatusIndicator_Update",
+            "rule_id": "C010",
+            "description": "The numeric constant 0U and the value STATUS_INDICATOR_NUM are used directly in the code. While STATUS_INDICATOR_NUM may be a macro, 0U is a magic number.",
+            "suggested_fix": "Define a named constant or macro for the value 0U (e.g., POSITION_NONE) and use it instead of the literal."
+        },
+        {
+            "file": "Core\\Src\\status_indicator.c",
+            "function": "StatusIndicator_Update",
+            "rule_id": "C017",
+            "description": "The for loop and if statements do not use braces, which can lead to maintenance errors.",
+            "suggested_fix": "Add braces around the body of all control structures, even if they contain only a single statement."
+        },
+        {
+            "file": "Core\\Src\\status_indicator.c",
+            "function": "StatusIndicator_SetPowerLED",
+            "rule_id": "C002",
+            "description": "The function uses uint8_t as the parameter type. While uint8_t is a fixed-width integer type from stdint.h, the guideline may require the use of uint32_t for consistency across the project unless there is a specific reason to use a smaller width.",
+            "suggested_fix": "Consider changing the parameter type from uint8_t to uint32_t for consistency, unless memory or hardware constraints require uint8_t."
+        },
+        {
+            "file": "Core\\Src\\status_indicator.c",
+            "function": "StatusIndicator_SetPowerLED",
+            "rule_id": "C011",
+            "description": "The function does not include a descriptive header comment explaining its purpose, parameters, and return values.",
+            "suggested_fix": "Add a header comment above the function describing its purpose, the meaning of the 'onoff' parameter, and any side effects."
+        },
+        {
+            "file": "Core\\Src\\status_indicator.c",
+            "function": "StatusIndicator_SetPowerLED",
+            "rule_id": "C010",
+            "description": "The values 1 and 0 are used as magic numbers for the 'onoff' parameter, which can reduce code readability and maintainability.",
+            "suggested_fix": "Define named constants or an enumeration for the ON and OFF states, and use them instead of hard-coded numeric values."
+        },
+        {
+            "file": "Core\\Src\\status_indicator.c",
+            "function": "StatusIndicator_SetPowerLED",
+            "rule_id": "C023",
+            "description": "The function uses numeric values (1 and 0) to represent LED states. Using an enum would improve code clarity and type safety.",
+            "suggested_fix": "Define an enum type for LED state (e.g., LED_STATE_ON, LED_STATE_OFF) and use it as the parameter type."
+        },
+        {
+            "file": "Core\\Src\\status_indicator.c",
+            "function": "StatusIndicator_SetPowerLED",
+            "rule_id": "C011",
+            "description": "The function lacks a header comment describing its purpose, parameters, and return values.",
+            "suggested_fix": "Add a descriptive comment block before the function."
+        }
+    ]
+}
